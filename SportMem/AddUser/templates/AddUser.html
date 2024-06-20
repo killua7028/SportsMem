@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member List</title>  
+    <style>
+        h1 {
+            text-align: center;
+            font-size: 45px;
+            margin-top: 20px;
+        }
+        a {
+            margin-top: 80px;
+        }
+        .centered {
+            text-align: center;
+        }
+
+        .centered-button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="centered">
+        <button type="submit" class="btn btn-primary centered-button">
+            <a href="/mem/?sport={{sport_name}}">
+                Back to Member List
+            </a> 
+        </button>
+    <div class = "container mt-5">
+        <form class = "col-7 mx-auto card p-2 shadow-lg" method="post" enctype = "multipart/form-data">
+            {% csrf_token %}
+            <h1>Name of Sport: {{sport_name}} </h1>
+            <hr>
+            <div class = "mb-3">
+                <label for = "exampleInputName" class = "form-label">Name:</label>
+                <input name = "name" required type="text" class = "form-control">
+            </div>
+            <div class = "mb-3">
+                <label for = "exampleInputAge" class = "form-label">Age:</label>
+                <input name = "age" required type="age" class = "form-control">
+            </div>
+            <div class = "mb-3">
+                <label for = "exampleInputDate" class = "form-label">Date of Joining:</label>
+                <input name = "date_of_joining" required type="date" class = "form-control">
+            </div>
+            <input type="hidden" name="sport" value="{{ sport_name }}">
+            <button type = "submit" class=" btn btn-success" id="member-table">Add Member</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>  
+
+    <style>
+        body {
+            padding-left: 20px; /* Add padding to the left side of the body */
+            margin-top: 50px;
+            font-size: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            
+            font-size: 60px;
+            
+        }
+
+        table, th, td {
+            border: 1px solid rgb(26, 65, 80);
+            border-collapse: collapse;
+            width: 50%;
+            text-align: center;
+            margin-top: 50px;
+        }
+        body {
+            background-image: url('https://i.pinimg.com/564x/e4/1c/d5/e41cd5b653ac58f5d75e036b73cc32d5.jpg');
+            background-repeat: no-repeat;
+            background-position: center;  
+            background-size: 1850px 1375px;
+            
+        }
+    </style>
+</head> 
+<body>
+    <div style="border: solid 5px rgb(200, 213, 230); padding: 5px; margin-top: 20px; width: 800px; text-align: center; margin: 0 auto; background-color: rgb(200, 213, 230);border-radius: 50px;">  
+        <h1>Number of Sports: {{ sports.count }}</h1>
+    </div>
+    
+    
+    <table class="container">
+        <thead>
+            <tr>
+                <th>Sport Name</th>   
+                <th>No Of Members</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sport in sports %}
+            <tr>
+                <td>
+                    <a href="/mem/?sport={{sport.SportName}}">
+                        {{sport.SportName}}
+                    </a> 
+                </td>
+                <td>{{ sport.NoOfMembers }}</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+    <div class="container mt-5">
+        <form class="col-7 mx-auto card p-2 shadow-lg" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="SportName" class="form-label">Name Of Sport:</label>
+                <input name="SportName" id="SportName" type="text" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success" id="member-table">Add Sport</button>
+        </form>
+    </div>
+</body>
+</html>

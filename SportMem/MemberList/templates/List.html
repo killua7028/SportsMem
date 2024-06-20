@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member List</title>  
+    <style>
+        h1 {
+            text-align: center;
+            font-size: 55px;
+            margin-top: 80px;
+        }
+        table, th, td {
+            border: 1px solid rgb(89, 146, 140);
+            border-collapse: collapse;
+            width: 40%;
+            margin-left: 540px; /* Add margin to the left side of the table */
+            margin-top: 100px;
+        }
+        td {
+            padding: 15px; /* Adjust the padding as needed */
+            text-align: left; /* Align content to the left */
+            font-size: 20px;   
+            width: 1%;
+        }
+        th {
+            padding: 15px; /* Adjust the padding as needed */
+            text-align: left; /* Align content to the left */
+            font-size: 40px rgb(44, 109, 117);   
+            width: 5%;
+        }
+        .centered {
+            text-align: center;
+        }
+
+        .centered-button {
+            margin-top: 10px;
+        }
+        
+    </style>
+</head>
+
+<body style = "background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fmultiple-sports&psig=AOvVaw0RoV9xEaH3kywpSPV0ehte&ust=1718365639716000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCICoh4TB2IYDFQAAAAAdAAAAABAE');background-repeat: no-repeat;">
+    
+    <div class="centered">
+        <button type="submit" class="btn btn-primary centered-button">
+            <a href="/?sport={{sport_name}}">
+                Back to Dashboard
+            </a> 
+        </button>
+    </div>   
+    <h1>List of {{sport_name}} users</h1>
+        <table class = 'container' id="member-table">
+            <thead>
+                <tr>
+                    <th>Name</th>   
+                    <th>Age</th>
+                    <th>Date Of Joining</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for member in members %}
+                {% if sport_name == member.sport %}
+                <tr>
+                    <td>{{ member.name }}</td>
+                    <td>{{ member.age }}</td>
+                    <td>{{ member.date_of_joining }}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>           
+        <div class="centered">
+            <button type="submit" class="btn btn-primary centered-button">
+                <a href="/addusr/?sport={{sport_name}}">
+                    Add User
+                </a> 
+            </button>
+        </div>
+</body>
+</html>
